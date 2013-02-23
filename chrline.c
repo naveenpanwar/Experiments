@@ -6,9 +6,9 @@ int c;
 int nl;
 nl = 0;
 while ((c = getchar()) != EOF)
-{	putchar(c);
-	if (c == '\n')
+{	if (c == '\n')
 		nl += 1;
+		putchar(c);
 }
 printf("Lines are %d", nl);
 }
