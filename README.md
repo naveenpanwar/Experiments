@@ -1,7 +1,5 @@
 #Experiments
-===========
-    ##Languages
-    ===========
-    * C
-    * Ruby
-    * Javascript
+##Languages
+* C
+* Ruby
+* Javascript
