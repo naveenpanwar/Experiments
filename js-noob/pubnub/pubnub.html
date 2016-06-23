@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Include AngularJS -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<!– Include the PubNub library from CDN –>
-		<script src="./node_modules/pubnub-angular/src/pubnub.js"></script>
+		<script src="https://cdn.pubnub.com/pubnub-3.15.1.min.js"></script>
 		<!– Include the PubNub AngularJS Service –>
-		<script src="./node_modules/pubnub-angular/dist/pubnub-angular.min.js"></script>
+		<script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
 		 
 		<script>
 			angular.module('app').run(['Pubnub', function(Pubnub) {
@@ -20,6 +22,6 @@
 			}])
 		</script>
 	</head>
-	<body>
+	<body ng-app="PubNubAngularApp">
 	</body>
 </html>
