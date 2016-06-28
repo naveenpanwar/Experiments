@@ -3,8 +3,9 @@ def gold_room
 
   print "> "
   choice = $stdin.gets.chomp
-
-  if choice.include?("0") || choice.include?("1")
+    
+  # use regex to check for character
+  if /\d+/.match(choice)
     how_much = choice.to_i
   else
     dead("Man, learn to type a number.")
