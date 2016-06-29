@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Include AngularJS -->
+		<script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>
+		<script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="./chat_controller.js"></script>
+		 
+		<script>
+			angular.module('app').run(['Pubnub', function(Pubnub) {
+					// Initialize with your API keys
+
+				Pubnub.init({
+
+					publish_key: 'pub-c-f180353d-405a-4b5d-8714-553806450f39',
+
+					subscribe_key: 'sub-c-28d38dde-38ef-11e6-a169-02ee2ddab7fe',
+
+				});
+			}])
+		</script>
+	</head>
+	<body ng-app="PubNubAngularApp" ng-controller="ChatCtrl">
+		<ul>
+		 <li ng-repeat="message in messages">
+		   <img src="{{avatarUrl(message.sender_uuid)}}" alt="{{message.sender_uuid}}">
+		   <span class="title">Anonymous robot #{{ message.sender_uuid }}</span>
+		   <p>{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</br> {{ message.content }}</p>
+		 </li>
+		</ul> 
+		<div ng-controller="ChatCtrl">
+		 <form ng-submit="sendMessage()">
+		   <input ng-model="messageContent" type="text" placeholder="Type your message" />
+		   <button type="submit">Send</button>
+		 </form>
+	    </div>
+	</body>
+</html>
