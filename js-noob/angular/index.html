@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app='store'>
+	<head>
+		<title>Angular Joos</title>
+		<link rel='stylesheet' type='text/css' href='bootstrap/css/bootstrap.min.css' />
+	</head>
+	<body ng-controller="StoreController as store" >
+		<div class="col-md-offset-3 col-md-6">
+			<ul class="list-group">
+				<li class="list-group-item" ng-hide="product.soldOut" ng-repeat="product in store.products">
+					<h3>
+						{{ product.name }} 
+						<em class="pull-right">{{product.price | currency }}</em>
+					</h3> 
+					<!-- Image Gallery -->
+					<div class="gallery">
+						<img class="img img-circle img-thumbnail center-block" ng-src="{{ product.images[0] }}">
+						<ul class="clearfix">
+							<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+								<img ng-src="{{ image }}">
+							</li>
+						</ul>
+					</div>
+					<p> {{ product.description }} </p>
+					<button ng-show="product.canPurchase"> Add to Cart </button>
+					<section>
+						<ul class="nav nav-pills">
+							<li> <a href ng-click="tab = 1"> Description </a> </li>
+							<li> <a href ng-click="tab = 2"> Spection </a> </li>
+							<li> <a href ng-click="tab = 3"> Reviews </a> </li>
+						</ul>
+						{{ tab }}
+					</section>
+				</li>
+			</ul>
+		</div>
+		<script type='text/javascript' src="angular.min.js"></script>
+		<script type='text/javascript' src="app.js"></script>
+	</body>
+</html>
