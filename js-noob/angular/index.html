@@ -10,7 +10,7 @@
 				<li class="list-group-item" ng-hide="product.soldOut" ng-repeat="product in store.products">
 					<h3>
 						{{ product.name }} 
-						<em class="pull-right">{{product.price | currency }}</em>
+						<em class="pull-right">{{product.price | currency:"&#8377;" }}</em>
 					</h3> 
 					<!-- Image Gallery -->
 					<div class="gallery">
