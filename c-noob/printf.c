@@ -1,6 +1,6 @@
 //This file includes testing some of the new c concepts
 #include<stdio.h>
-main()
+void main()
 {
 	int a = 1;
 	printf("%d,%d,%d \n",a,++a,a++);

@@ -43,3 +43,10 @@ bower.json
 
 # Ignore Npm Module Folders
 /js-noob/pubnub/node_modules/
+
+# Ignore out files in c
+*.out
+
+# ignore java object files
+*.ctxt
+*.class
