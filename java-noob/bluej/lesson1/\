@@ -1,0 +1,13 @@
+/* This is a file created outside bluej
+ * please write your file name */
+
+import jaa.util.Scanner;
+
+public class Calculator {
+	public int plus() {
+		System.out.println("Please enter two numbers");
+		System.out.print("1:");
+		System.out.print("2:");
+
+
+}
