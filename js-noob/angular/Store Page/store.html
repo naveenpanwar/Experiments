@@ -3,13 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>Shops</title>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./store.css" />
     <script src="./angular.min.js"></script>
     <script src="./store.js"></script>
   </head>
   <body ng-app="ShopsApp">
 
-    <p>Nothing here {{'yet' + '!'}}</p>
+	<div class="shops-wrapper" ng-controller="ShopsController">
+		<div class="country-list">
+			<div ng-repeat="country in countries">
+				<ul ng-repeat="(key, country_name) in country">
+					<li class="count_name" onclick="show_shops(this)">{{ key }}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="shops-list">
+			<div ng-repeat="country in countries">
+				<div class="{{ key }} shops-list-wrapper" ng-repeat="(key, country_name) in country">
+					<div>
+						<ul ng-repeat="(key, city_name) in country_name">
+							<li>
+								{{ key }}
+								<ul ng-repeat="(key, shop_name) in city_name">
+									<li>
+										<div>
+											<strong>{{ key }}</strong><br>
+											{{ shop_name["Address 1"] }}<br>
+											{{ shop_name["Phone"] }}<br>
+											{{ shop_name["Address 2"] }}<br>
+											{{ shop_name["Web"] }}<br>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</div>
+	</div>
 
   </body>
 </html>
