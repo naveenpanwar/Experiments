@@ -1,24 +1,34 @@
 .shops-wrapper {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1;
+	grid-template-columns: repeat(6, 1fr);
 }
 
 .country-list {
 	grid-column: 1;
-	grid-row: 1/1;
 }
 
-.shops-list {
-	grid-column: 2/5;
-	grid-row: 1/1;
+.city-list-wrapper {
+	grid-column: 2/4;
 }
 
 .shops-list-wrapper {
+	grid-column: 4/7;
+}
+
+.city-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.shops-list ul li {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 }
 
-.shops-list-wrapper div {
+.city-list {
+	display: none;
+}
+
+.shops-list ul li {
 	display: none;
 }

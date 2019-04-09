@@ -3,50 +3,76 @@
 	<head>
 		<title>Angular Joos</title>
 		<link rel='stylesheet' type='text/css' href='bootstrap/css/bootstrap.min.css' />
+		<link rel='stylesheet' type='text/css' href='app.css' />
 	</head>
 	<body ng-controller="StoreController as store" >
 		<div class="col-md-offset-3 col-md-6">
 			<ul class="list-group">
-				<li class="list-group-item" ng-hide="product.soldOut" ng-repeat="product in store.products">
-					<h3>
-						{{ product.name }} 
-						<em class="pull-right">{{product.price | currency:"&#8377;" }}</em>
-					</h3> 
-					<!-- Image Gallery -->
-					<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
-						<img class="img img-circle img-thumbnail center-block" ng-src="{{ product.images[gallery.current] }}">
-						<ul class="clearfix">
-							<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
-								<img ng-src="{{ image }}">
-							</li>
-						</ul>
+				<li class="list-group-item" ng-repeat="product in store.products">
+					<div class="Gallery" ng-controller="GalleryController as gallery">
+						<img ng-src="{{ product.images[gallery.current].full }}">
 					</div>
-					<button ng-show="product.canPurchase"> Add to Cart </button>
+					<h3>
+						<product-title></product-title>
+					</h3>
 					<section ng-controller="PanelController as panel">
 						<ul class="nav nav-pills">
-							<li ng-class="{ active:panel.isSelected(1) }"> 
-								<a href ng-click="panel.selectTab(1)"> Description </a> 
+							<li	class="nav-item" ng-class="{ active:panel.isSelected(1) }" ng-click="panel.selectTab(1)">
+								<a href="#" class="nav-link">Description</a>
 							</li>
-							<li ng-class="{ active:panel.isSelected(2) }"> 
-								<a href ng-click="panel.selectTab(2)"> Spection </a> 
+							<li	class="nav-item" ng-class="{ active:panel.isSelected(2) }" ng-click="panel.selectTab(2)">
+								<a href="#" class="nav-link">Specifications</a>
 							</li>
-							<li ng-class="{ active:panel.isSelected(3) }"> 
-								<a href ng-click="panel.selectTab(3)"> Reviews </a> 
+							<li	class="nav-item" ng-class="{ active:panel.isSelected(3) }" ng-click="panel.selectTab(3)">
+								<a href="#" class="nav-link">Reviews</a>
 							</li>
 						</ul>
+						
 						<div class="panel" ng-show="panel.isSelected(1)">
-							<h4> Description </h4>
-							<p> {{ product.description }}</p>
+							<h4>Description</h4>
+							<p>{{ product.description }} </p>
 						</div>
 						<div class="panel" ng-show="panel.isSelected(2)">
-							<h4> Specifications </h4>
-							<p> None Yet </p>
+							<h4>Specifications</h4>
+							<blockquote>None Yet </blockquote>
 						</div>
 						<div class="panel" ng-show="panel.isSelected(3)">
-							<h4> Reviews </h4>
-							<p> None Yet </p>
+							<h4>Reviews</h4>
+							<blockquote ng-repeat="review in product.reviews">
+								<b>Starts: {{ review.stars }}</b><br>
+								{{ review.body }}<br>
+								<cite>--by: {{ review.author }} </cite>
+							</blockquote>
 						</div>
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+							ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+							<blockquote>
+								<b>{{ reviewCtrl.review.stars }}</b><br>
+								{{ reviewCtrl.review.body }}<br>
+								<cite>{{ reviewCtrl.review.author }} </cite>
+							</blockquote>
+							<div  class="form-group">
+								<select class="form-control" ng-model="reviewCtrl.review.stars">
+									<option value="1">1 Star</option>
+									<option value="2">2 Star</option>
+									<option value="3">3 Star</option>
+									<option value="4">4 Star</option>
+									<option value="5">5 Star</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<textarea placeholder="Your Message" class="form-control" rows="4" ng-model="reviewCtrl.review.body" required></textarea>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Email" type="email" ng-model="reviewCtrl.review.author" required />
+							</div>
+							<div> reviewForm is {{reviewForm.$valid }} </div>
+							<input type="submit" value="Submit" class="btn btn-primary" required>
+						</form>
 					</section>
+					<div>
+						<button ng-show="product.canPurchase">Add To Cart</button>
+					</div>
 				</li>
 			</ul>
 		</div>

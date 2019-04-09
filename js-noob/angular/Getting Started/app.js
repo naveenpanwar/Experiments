@@ -21,7 +21,31 @@
     this.current = 0;
 
     this.setCurrent = function(newCurrent) {
-      this.current = newCurrent || 0;
+      if (newCurrent) {
+        this.current = newCurrent;
+      }
+      else {
+        this.current = newCurrent;
+      }
+      
+      return this.current;
+    };
+
+  });
+  
+  app.controller( 'ReviewController', function(){
+    this.review = {};
+
+    this.addReview = function(product) {
+      product.reviews.push(this.review);
+      this.review = {};
+    }
+  });
+
+  app.directive( 'productTitle', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'product-title.html'
     };
   });
 
@@ -34,12 +58,19 @@
     soldOut: false,
     images: [
       {
-        full: 'dodecahedron-01-full.jpg',
-        thumb: 'dodecahedron-01-thumb.jpg',
+        full: 'images/gem-01.gif',
+        thumb: 'images/gem-01.gif',
       },
       {
-        full: 'dodecahedron-02-full.jpg',
-        thumb: 'dodecahedron-02-thumb.jpg',
+        full: 'images/gem-02.gif',
+        thumb: 'images/gem-02.gif',
+      }
+    ],
+    reviews: [
+      {
+        stars: 5,
+        body: "some body",
+        author: "some author",
       },
     ]
     },
@@ -51,12 +82,19 @@
     soldOut: false,
     images: [
       {
-        full: 'dodecahedron-01-full.jpg',
-        thumb: 'dodecahedron-01-thumb.jpg',
+        full: 'images/gem-03.gif',
+        thumb: 'images/gem-03.gif',
       },
       {
-        full: 'dodecahedron-02-full.jpg',
-        thumb: 'dodecahedron-02-thumb.jpg',
+        full: 'images/gem-04.gif',
+        thumb: 'images/gem-04.gif',
+      }
+    ],
+    reviews: [
+      {
+        stars: 4,
+        body: "some other body",
+        author: "some other author",
       },
     ]
     },

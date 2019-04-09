@@ -12,33 +12,35 @@
 
 	<div class="shops-wrapper" ng-controller="ShopsController">
 		<div class="country-list">
-			<div ng-repeat="country in countries">
-				<ul ng-repeat="(key, country_name) in country">
-					<li class="count_name" onclick="show_shops(this)">{{ key }}</li>
+			<div ng-repeat="entry in country_list">
+				<ul ng-repeat="(key, country) in entry">
+					<li onclick="show_cities(this)">{{ key }}</li>
 				</ul>
 			</div>
 		</div>
-		<div class="shops-list">
-			<div ng-repeat="country in countries">
-				<div class="{{ key }} shops-list-wrapper" ng-repeat="(key, country_name) in country">
-					<div>
-						<ul ng-repeat="(key, city_name) in country_name">
-							<li>
-								{{ key }}
-								<ul ng-repeat="(key, shop_name) in city_name">
-									<li>
-										<div>
-											<strong>{{ key }}</strong><br>
-											{{ shop_name["Address 1"] }}<br>
-											{{ shop_name["Phone"] }}<br>
-											{{ shop_name["Address 2"] }}<br>
-											{{ shop_name["Web"] }}<br>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+		<div class="city-list-wrapper">
+			<div ng-repeat="entry in country_list">
+				<div ng-repeat="(key, country) in entry">
+					<ul class="city-list" id="{{ key }}">
+						<li onclick="show_shops(this)" ng-repeat="(key, city) in country">{{ key }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="shops-list-wrapper">
+			<div ng-repeat="entry in country_list">
+				<div class="shops-list" ng-repeat="(key, country) in entry">
+					<ul ng-repeat="(key, city) in country">
+						<li id="{{ key }}">
+							<div ng-repeat="(key, shop) in city">
+								<strong>{{ key }}</strong><br>
+								{{ shop["Address 1"] }}<br>
+								{{ shop["Phone"] }}<br>
+								{{ shop["Address 2"] }}<br>
+								{{ shop["Web"] }}<br>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</li>
 		</div>
