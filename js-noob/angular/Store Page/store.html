@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Shops</title>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./store.css" />
+    <script src="./angular.min.js"></script>
+    <script src="./store.js"></script>
+  </head>
+  <body ng-app="ShopsApp">
+
+	<div class="shops-wrapper" ng-controller="ShopsController">
+		<div class="country-list">
+			<div ng-repeat="entry in country_list">
+				<ul ng-repeat="(key, country) in entry">
+					<li onclick="show_cities(this)">{{ key }}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="city-list-wrapper">
+			<div ng-repeat="entry in country_list">
+				<div ng-repeat="(key, country) in entry">
+					<ul class="city-list" id="{{ key }}">
+						<li onclick="show_shops(this)" ng-repeat="(key, city) in country">{{ key }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="shops-list-wrapper">
+			<div ng-repeat="entry in country_list">
+				<div class="shops-list" ng-repeat="(key, country) in entry">
+					<ul ng-repeat="(key, city) in country">
+						<li id="{{ key }}">
+							<div ng-repeat="(key, shop) in city">
+								<strong>{{ key }}</strong><br>
+								{{ shop["Address 1"] }}<br>
+								{{ shop["Phone"] }}<br>
+								{{ shop["Address 2"] }}<br>
+								{{ shop["Web"] }}<br>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</div>
+	</div>
+
+  </body>
+</html>
